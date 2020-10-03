@@ -28,39 +28,20 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Swiper.use([Thumbs]);
 var ps;
-export const useObservable = () => {
-    const subj = new Subject<boolean>();
 
-    const next = (value:boolean): void => {
-        subj.next(value) };
-
-    return { change: subj.asObservable() , next};
-};
 
 const instance = Axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com'
+  baseURL: 'https://jsonplaceholders.typicode.com'
 });
 export const Main = () => {
 
-     const {change: engineerChange, next: engNext} = useObservable();
-    const {change: languagesChange, next: lanNext} = useObservable();
 
-
-    // const getItem = <T,> (url: string): Observable<T[]> => {
-    //    return api.get<T[]>(url)
-    //         .pipe(
-    //             take(1),
-    //             catchError(err => of(console.log(err)))
-    //         ) as Observable<T[]>;
-    // };
-
-
-      const getEngineers = () =>{
+    const getEngineers = () =>{
          instance.get('/posts').subscribe(
-    response => console.log(response),
-    error => console.log(error)
-  );
-}
+         response => console.log(response),
+         error => console.log(error)
+      );
+    }
     const [active, setActive] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
     const [isActive, setIsActive] = useState(false)
